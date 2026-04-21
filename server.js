@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '.')));
 // ============================================================
 // DATABASE CONNECTION
 // ============================================================
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect('mongodb+srv://lamthanh:Zcy05aXpbqjG9Q4c@cluster0.ekrfhyi.mongodb.net/lamthanh?retryWrites=true&w=majority')
   .then(() => console.log('✅ Kết nối MongoDB thành công'))
   .catch(err => console.error('❌ Lỗi MongoDB:', err));
 
