@@ -539,7 +539,7 @@ app.delete('/api/reset-all', async (req, res) => {
 
 // --- SERVE FRONTEND ---
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname,'index-final.html'));
 });
 
 // ============================================================
