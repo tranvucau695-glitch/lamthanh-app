@@ -1,0 +1,187 @@
+/* ===== LAMTHANH MOBILE RESPONSIVE ===== */
+
+/* Nút hamburger - chỉ hiện trên mobile */
+.mob-tog {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--tx);
+  flex-shrink: 0;
+}
+
+/* Overlay khi sidebar mở */
+.sb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 98;
+}
+.sb-overlay.open { display: block; }
+
+@media (max-width: 768px) {
+
+  /* Body: bỏ flex cứng, cho cuộn được */
+  body {
+    display: block !important;
+    height: auto !important;
+    overflow: auto !important;
+  }
+
+  /* Sidebar ẩn sang trái, trượt ra khi mở */
+  .sb {
+    position: fixed !important;
+    top: 0; left: 0; bottom: 0;
+    width: 260px !important;
+    z-index: 99;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    overflow-y: auto;
+  }
+  .sb.open {
+    transform: translateX(0);
+  }
+
+  /* Header cố định trên cùng */
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    padding: 0 12px !important;
+    height: 52px !important;
+  }
+
+  /* Hiện nút hamburger */
+  .mob-tog { display: inline-flex !important; }
+
+  /* Main content full width */
+  .mn2 {
+    width: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  /* Content area cuộn tự do */
+  .ct {
+    padding: 12px !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Grid 4 cột → 2 cột */
+  .sg4 { grid-template-columns: repeat(2,1fr) !important; }
+
+  /* Grid 3 cột → 1 cột */
+  .sg3 { grid-template-columns: 1fr 1fr !important; }
+
+  /* Grid 2 cột → 1 cột */
+  .g2, .g3 { grid-template-columns: 1fr !important; }
+
+  /* Bán hàng: bỏ layout cứng */
+  .sell-w {
+    display: block !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+  .sell-l, .sell-r {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    border-left: none !important;
+    border-top: 1px solid var(--bd);
+  }
+
+  /* Form grid 2-3 cột → 1 cột */
+  .c2, .c3, .fr.c2, .fr.c3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* KPI wrap */
+  .kpi {
+    flex-wrap: wrap;
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+  .kpi-i { flex: 1 1 40%; min-width: 0; }
+  .kpi-v { font-size: 15px !important; }
+
+  /* Tiêu đề section */
+  .sh3 {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+  .sh3 > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Filter bar cuộn ngang */
+  .fb {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+  .fb .fi, .fb .fc {
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  /* Bảng: scroll ngang */
+  .tw { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  table { min-width: 500px; }
+
+  /* Modal full màn hình */
+  .modal, .modal.lg {
+    width: 100% !important;
+    max-width: 100vw !important;
+    max-height: 95vh !important;
+    border-radius: 16px 16px 0 0 !important;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    margin: 0;
+  }
+  .mbk { align-items: flex-end !important; }
+
+  /* Bảng sản phẩm bán hàng */
+  #sl_tbl { min-width: 650px; }
+
+  /* Backup grid */
+  .g3 { grid-template-columns: 1fr !important; }
+
+  /* Settings grid */
+  .g2.settings { grid-template-columns: 1fr !important; }
+
+  /* Nút nhỏ hơn chút */
+  .btn { font-size: 12px !important; padding: 6px 10px !important; }
+
+  /* Stats card text nhỏ hơn */
+  .sc-v { font-size: 16px !important; }
+
+  /* Toast xuống dưới giữa */
+  .twrap {
+    bottom: 12px !important;
+    right: 12px !important;
+    left: 12px !important;
+  }
+  .toast { min-width: auto !important; }
+
+  /* Tabs cuộn ngang */
+  .tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab { white-space: nowrap; flex-shrink: 0; }
+
+  /* Header title ngắn lại */
+  .hdr-t { font-size: 14px !important; }
+
+  /* Thanh backup bar */
+  .bkbar { font-size: 11px !important; padding: 5px 12px !important; }
+}
