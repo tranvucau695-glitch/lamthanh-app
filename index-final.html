@@ -169,7 +169,8 @@ select.xls-cell option{background:#fff}
 </style>
 </head>
 <body>
-<nav class="sb">
+<div class="sb-overlay" id="sbOverlay" onclick="closeSb()"></div>
+  <nav class="sb">
   <div class="sb-logo">
     <div class="sb-ic">LT</div>
     <div><div class="sb-nm">LamThanh</div><div class="sb-sub">Quản lý bán hàng</div></div>
@@ -209,6 +210,7 @@ select.xls-cell option{background:#fff}
 <div class="mn2">
   <header class="hdr">
     <div class="hdr-t" id="hdrTitle">Bảng điều khiển</div>
+   <button class="mob-tog" onclick="toggleSb()">☰</button>
     <button class="btn bs" onclick="nav('backup')">💾 Backup</button>
     <div class="av">A</div>
   </header>
@@ -1443,6 +1445,8 @@ loadAllData=async function(){
 setInterval(()=>loadAllData(),60000);
 document.getElementById('rpF').value=new Date(new Date().setMonth(new Date().getMonth()-1)).toISOString().split('T')[0];
 document.getElementById('rpT').value=iso();
+function toggleSb(){document.querySelector('.sb').classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('open');}
+function closeSb(){document.querySelector('.sb').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');}
 </script>
 </body>
 </html>
