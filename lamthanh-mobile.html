@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LamThanh App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f1117;
+    color: #f0f0f0;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+  }
+
+  .app-title {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .app-title h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .app-title h1 span { color: #3df5a0; }
+
+  .app-title p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* Section */
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #555;
+    margin: 0 4px 10px;
+  }
+
+  /* Big tap buttons */
+  .btn-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px;
+    background: #1a1d27;
+    border: 1px solid #252836;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #f0f0f0;
+    margin-bottom: 10px;
+    transition: background 0.15s;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .btn-link:active { background: #202330; }
+
+  .btn-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .bg-gh { background: #21262d; }
+  .bg-green { background: rgba(61,245,160,0.12); }
+  .bg-blue { background: rgba(91,143,255,0.12); }
+  .bg-orange { background: rgba(255,160,60,0.12); }
+
+  .btn-text { flex: 1; }
+  .btn-title { font-size: 15px; font-weight: 600; }
+  .btn-sub { font-size: 12px; color: #666; margin-top: 2px; }
+
+  .arrow { color: #444; font-size: 16px; }
+
+  .section { margin-bottom: 24px; }
+
+  /* Status pills */
+  .pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .pill {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #1a1d27;
+    border: 1px solid #252836;
+  }
+
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot-green { background: #3df5a0; box-shadow: 0 0 5px #3df5a0; animation: blink 2s infinite; }
+  .dot-blue { background: #5b8fff; }
+
+  @keyframes blink {
+    0%,100%{opacity:1} 50%{opacity:0.3}
+  }
+
+  /* Copy row */
+  .copy-row {
+    background: #1a1d27;
+    border: 1px solid #252836;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copy-row code {
+    flex: 1;
+    font-size: 13px;
+    color: #3df5a0;
+    font-family: monospace;
+  }
+
+  .copy-btn {
+    background: rgba(61,245,160,0.1);
+    border: 1px solid rgba(61,245,160,0.25);
+    border-radius: 8px;
+    color: #3df5a0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .copy-btn:active { opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="app-title">
+  <h1>LamThanh <span>App</span></h1>
+  <p>GitHub · Render.com</p>
+</div>
+
+<!-- Status -->
+<div class="pills">
+  <div class="pill"><span class="dot dot-green"></span> GitHub OK</div>
+  <div class="pill"><span class="dot dot-blue"></span> Render Live</div>
+</div>
+
+<!-- GitHub -->
+<div class="section">
+  <div class="section-label">GitHub</div>
+
+  <a class="btn-link" href="https://github.com/tranvucau695-glitch/lamthanh-app" target="_blank">
+    <div class="btn-icon bg-gh">🐙</div>
+    <div class="btn-text">
+      <div class="btn-title">Repository</div>
+      <div class="btn-sub">tranvucau695-glitch/lamthanh-app</div>
+    </div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="btn-link" href="https://github.com/tranvucau695-glitch/lamthanh-app/commits" target="_blank">
+    <div class="btn-icon bg-gh">📋</div>
+    <div class="btn-text">
+      <div class="btn-title">Commits</div>
+      <div class="btn-sub">Xem lịch sử thay đổi</div>
+    </div>
+    <span class="arrow">›</span>
+  </a>
+</div>
+
+<!-- Render -->
+<div class="section">
+  <div class="section-label">Render Server</div>
+
+  <a class="btn-link" href="https://lamthanh-app.onrender.com" target="_blank">
+    <div class="btn-icon bg-green">🌐</div>
+    <div class="btn-text">
+      <div class="btn-title">Mở App</div>
+      <div class="btn-sub">lamthanh-app.onrender.com</div>
+    </div>
+    <span class="arrow">›</span>
+  </a>
+
+  <a class="btn-link" href="https://dashboard.render.com" target="_blank">
+    <div class="btn-icon bg-blue">🚀</div>
+    <div class="btn-text">
+      <div class="btn-title">Render Dashboard</div>
+      <div class="btn-sub">Quản lý deploy & logs</div>
+    </div>
+    <span class="arrow">›</span>
+  </a>
+</div>
+
+<!-- Deploy -->
+<div class="section">
+  <div class="section-label">Deploy (push to main)</div>
+  <div class="copy-row">
+    <code>git push origin main</code>
+    <button class="copy-btn" onclick="copy(this)">Copy</button>
+  </div>
+</div>
+
+<script>
+function copy(btn) {
+  navigator.clipboard.writeText('git push origin main').then(() => {
+    btn.textContent = '✓ Đã copy';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>
