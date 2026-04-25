@@ -1294,7 +1294,8 @@ function printCash(id){
   const w=window.open('','_blank','width=800,height=600');w.document.write(html);w.document.close();
 }
 function exportCSV(type){let rows=[];if(type==='orders'){rows=[['Mã đơn','Khách hàng','Ngày','Sản phẩm','Tổng','CK','Công nợ','Trạng thái'],...db.orders.map(o=>[o.id,o.customer,o.date,'"'+o.items+'"',o.total,o.discount||0,o.total-(o.collected||0),o.status])];}else if(type==='reports'){rows=[['Tháng','Doanh thu','Chi phí','Lợi nhuận']];for(let i=5;i>=0;i--){const d=new Date();d.setMonth(d.getMonth()-i);const m=d.getMonth();const y=d.getFullYear();const rv=db.orders.filter(o=>{const dt=o.date.split('/');return parseInt(dt[1])-1===m&&parseInt(dt[2])===y&&o.status==='delivered';}).reduce((s,o)=>s+o.total,0);const cost=db.cashflow.filter(c=>{const dt=c.date.split('/');return parseInt(dt[1])-1===m&&parseInt(dt[2])===y&&c.type==='Chi';}).reduce((s,c)=>s+c.amount,0);rows.push(['T'+(m+1)+'/'+y,rv,cost,rv-cost]);}}const csv=rows.map(r=>r.join(',')).join('\n');const b=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(type==='orders'?'don-hang':'bao-cao')+'-'+iso()+'.csv';a.click();toast('Đã xuất CSV','s');}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').then(()=>console.log('SW registered')).catch(()=>{});}
+if('caches' in window){caches.keys().then(ks=>ks.forEach(k=>caches.delete(k)));}
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').then(()=>console.log('SW registered')).catch(()=>{});}
 setInterval(()=>{fetch('/api/settings').catch(()=>{});},10*60*1000);
 let currentPage='dash';
 loadAllData().then(()=>{renderDash();toast('✅ Đã kết nối server!','s');});
