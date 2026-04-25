@@ -552,6 +552,7 @@ app.delete('/api/reset-all', async (req, res) => {
 // --- SERVE FRONTEND ---
 app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, 'manifest.json')));
 app.get('/sw.js', (req, res) => res.sendFile(path.join(__dirname, 'sw.js')));
+app.get('/logo.png', (req, res) => res.sendFile(path.join(__dirname, 'logo.png')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index-final.html'));
 });
