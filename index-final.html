@@ -1133,11 +1133,11 @@ function openProdM(id){
   document.getElementById('pm_sup').innerHTML='<option value="">— Chọn NCC —</option>'+db.suppliers.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
   document.getElementById('catDL').innerHTML=getCats().map(c=>`<option value="${c}">`).join('');
   const flds=['nm','sku','cat','unit','em','cost','stk','min','desc'];
-  if(id){const p=db.products.find(x=>x.id===id);if(p){flds.forEach(f=>{const el=document.getElementById('pm_'+f);if(el)el.value=p[f==='nm'?'name':f==='em'?'emoji':f==='stk'?'stock':f==='min'?'minStock':f]||'';});document.getElementById('pm_sup').value=p.suppId||'';document.getElementById('pm_tot').value=p.cost&&p.stock?(p.cost*p.stock).toLocaleString('vi-VN')+'₫':'';}}
+  if(id){const p=db.products.find(x=>(x._id||x.id)===id);if(p){flds.forEach(f=>{const el=document.getElementById('pm_'+f);if(el)el.value=p[f==='nm'?'name':f==='em'?'emoji':f==='stk'?'stock':f==='min'?'minStock':f]||'';});document.getElementById('pm_sup').value=p.suppId||'';document.getElementById('pm_tot').value=p.cost&&p.stock?(p.cost*p.stock).toLocaleString('vi-VN')+'₫':'';}}
   else{flds.forEach(f=>{const el=document.getElementById('pm_'+f);if(el)el.value='';});document.getElementById('pm_tot').value='';document.getElementById('pm_sup').value='';}
   openM('mProd');
 }
-async function delProd(id){if(!confirm('Xóa sản phẩm?'))return;const p=db.products.find(x=>x.id===id);if(!p)return;try{await API.del('/api/products/'+(p._id||p.id));await loadAllData();renderProducts();toast('Đã xóa','s');}catch(e){toast('Lỗi: '+e.message,'e');}}
+async function delProd(id){if(!confirm('Xóa sản phẩm?'))return;const p=db.products.find(x=>(x._id||x.id)===id);if(!p)return;try{await API.del('/api/products/'+(p._id||p.id));await loadAllData();renderProducts();toast('Đã xóa','s');}catch(e){toast('Lỗi: '+e.message,'e');}}
 async function saveProd(){
   const nm=document.getElementById('pm_nm').value.trim();const cat=document.getElementById('pm_cat').value.trim();const unit=document.getElementById('pm_unit').value.trim();
   if(!nm){toast('Nhập tên sản phẩm','e');return;}if(!cat){toast('Nhập nhóm SP','e');return;}if(!unit){toast('Nhập đơn vị tính','e');return;}
