@@ -497,24 +497,30 @@ app.post('/api/imports', async (req, res) => {
     const suppId = req.body.suppId;
     const suppNm = req.body.suppNm;
     const date = req.body.date;
-    const created = [];
     let totalVal = 0;
+
+    // Tạo 1 phiếu nhập duy nhất chứa tất cả sản phẩm
+    const impId = 'NK' + s.counters.imp++;
+    await s.save();
+
     for (const item of items) {
-      const imp = await Import.create({
-        id: 'NK' + s.counters.imp++,
-        date, suppId, suppNm,
-        prodId: item.id,
-        prodNm: item.name,
-        qty: item.q,
-        up: item.up,
-        total: item.q * item.up
+      // Cộng tồn kho và cập nhật giá nhập
+      await Product.findByIdAndUpdate(item.id, {
+        $inc: { stock: item.q },
+        $set: { cost: item.up, price: item.up }
       });
-      // Cộng tồn kho
-      await Product.findByIdAndUpdate(item.id, { $inc: { stock: item.q } });
       totalVal += item.q * item.up;
-      created.push(imp);
     }
-    // Ghi chi phí
+
+    const imp = await Import.create({
+      id: impId,
+      date, suppId, suppNm,
+      items: items,
+      qty: items.reduce((s,i) => s + i.q, 0),
+      total: totalVal
+    });
+
+    // Ghi phiếu chi
     if (totalVal > 0) {
       await Cashflow.create({
         id: 'PC' + s.counters.cash++,
@@ -525,6 +531,12 @@ app.post('/api/imports', async (req, res) => {
         amount: totalVal,
         method: '—'
       });
+      await s.save();
+    }
+
+    res.json(imp);
+  } catch(e) { res.status(500).json({ error: e.message }); }
+});
     }
     await s.save();
     res.json(created);
