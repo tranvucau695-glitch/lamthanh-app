@@ -559,8 +559,6 @@ app.get('*', (req, res) => {
   res.setHeader('Expires', '0');
   res.sendFile(path.join(__dirname, 'index-final.html'));
 });
-});
-
 // ============================================================
 // START SERVER
 // ============================================================
