@@ -368,12 +368,6 @@ app.delete('/api/orders/:id', async (req, res) => {
     res.json({ ok: true });
   } catch(e) { res.status(500).json({ error: e.message }); }
 });
-  try {
-    await Order.findByIdAndDelete(req.params.id);
-    res.json({ ok: true });
-  } catch(e) { res.status(500).json({ error: e.message }); }
-});
-
 // --- RETURNS ---
 app.get('/api/returns', async (req, res) => {
   try { res.json(await Return.find().sort({ createdAt: -1 })); }
