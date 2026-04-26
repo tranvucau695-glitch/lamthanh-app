@@ -73,6 +73,7 @@ const orderSchema = new mongoose.Schema({
   status: { type: String, default: 'pending' },
   note: String,
   collected: { type: Number, default: 0 }
+  stockUpdates: { type: Array, default: [] },
 }, { timestamps: true });
 
 // Return
