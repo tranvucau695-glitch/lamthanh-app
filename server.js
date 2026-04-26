@@ -537,12 +537,6 @@ app.post('/api/imports', async (req, res) => {
     res.json(imp);
   } catch(e) { res.status(500).json({ error: e.message }); }
 });
-    }
-    await s.save();
-    res.json(created);
-  } catch(e) { res.status(500).json({ error: e.message }); }
-});
-
 // --- DASHBOARD STATS ---
 app.get('/api/stats', async (req, res) => {
   try {
