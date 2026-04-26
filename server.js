@@ -72,7 +72,7 @@ const orderSchema = new mongoose.Schema({
   discount: { type: Number, default: 0 },
   status: { type: String, default: 'pending' },
   note: String,
-  collected: { type: Number, default: 0 }
+  collected: { type: Number, default: 0 },
   stockUpdates: { type: Array, default: [] },
 }, { timestamps: true });
 
