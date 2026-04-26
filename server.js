@@ -345,6 +345,30 @@ app.put('/api/orders/:id', async (req, res) => {
 
 app.delete('/api/orders/:id', async (req, res) => {
   try {
+    const order = await Order.findById(req.params.id);
+    if (order && order.customerId) {
+      const debt = order.total - (order.collected || 0);
+      if (debt > 0) {
+        await Customer.findByIdAndUpdate(order.customerId, {
+          $inc: { debt: -debt, total: -order.total }
+        });
+      } else {
+        await Customer.findByIdAndUpdate(order.customerId, {
+          $inc: { total: -order.total }
+        });
+      }
+      // Hoàn lại tồn kho
+      if (order.stockUpdates) {
+        for (const u of order.stockUpdates) {
+          await Product.findByIdAndUpdate(u.id, { $inc: { stock: u.qty } });
+        }
+      }
+    }
+    await Order.findByIdAndDelete(req.params.id);
+    res.json({ ok: true });
+  } catch(e) { res.status(500).json({ error: e.message }); }
+});
+  try {
     await Order.findByIdAndDelete(req.params.id);
     res.json({ ok: true });
   } catch(e) { res.status(500).json({ error: e.message }); }
