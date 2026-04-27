@@ -104,11 +104,9 @@ const importSchema = new mongoose.Schema({
   date: String,
   suppId: String,
   suppNm: String,
-  prodId: String,
-  prodNm: String,
-  qty: Number,
-  up: Number,
-  total: Number
+  items: { type: Array, default: [] },
+  qty: { type: Number, default: 0 },
+  total: { type: Number, default: 0 }
 }, { timestamps: true });
 
 // Collection (thu công nợ)
